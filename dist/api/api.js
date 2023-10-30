@@ -19,20 +19,20 @@ const BASE_URL = "https://open-api.tiktokglobalshop.com";
 const VERSION = "202309";
 const LOCALE = "en-US";
 class TikTok {
-    constructor({ appKey, accessToken, shopChiper, shopId, appSecret, }) {
+    constructor({ appKey, accessToken, shopCipher, shopId, appSecret, }) {
         this.appKey = appKey;
         this.accessToken = accessToken;
-        this.shopChiper = shopChiper;
+        this.shopCipher = shopCipher;
         this.shopId = shopId;
         this.appSecret = appSecret;
     }
     generateRequestSign(endpoint, bodyData = {}) {
         const accessToken = this.accessToken;
         const appKey = this.appKey;
-        const shopChiper = this.shopChiper;
+        const shopCipher = this.shopCipher;
         const shopId = this.shopId;
         const appSecret = this.appSecret;
-        const myUrl = `${BASE_URL}${endpoint}?access_token=${accessToken}&app_key=${appKey}&shop_chiper=${shopChiper || ""}&shop_id=${shopId || ""}&version=${VERSION}`;
+        const myUrl = `${BASE_URL}${endpoint}?access_token=${accessToken}&app_key=${appKey}&shop_cipher=${shopCipher || ""}&shop_id=${shopId || ""}&version=${VERSION}`;
         const { signature, timestamp } = common_1.default.signByUrl(myUrl, appSecret);
         const url = `${myUrl}&timestamp=${timestamp}&sign=${signature}`;
         const headers = {
@@ -40,8 +40,8 @@ class TikTok {
         };
         return { url, headers, data: bodyData };
     }
-    setShop({ shopChiper, shopId }) {
-        this.shopChiper = shopChiper;
+    setShop({ shopCipher, shopId }) {
+        this.shopCipher = shopCipher;
         this.shopId = shopId;
     }
     getShops() {

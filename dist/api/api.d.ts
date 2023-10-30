@@ -2,20 +2,20 @@ import type { Product, Recommendation, ProductPrices, SkuInventory, ProductParti
 interface TikTokConfig {
     appKey: string;
     accessToken: string;
-    shopChiper?: string;
+    shopCipher?: string;
     shopId?: string;
     appSecret: string;
 }
 declare class TikTok {
     private appKey;
     private accessToken;
-    private shopChiper?;
+    private shopCipher?;
     private shopId?;
     private appSecret;
-    constructor({ appKey, accessToken, shopChiper, shopId, appSecret, }: TikTokConfig);
+    constructor({ appKey, accessToken, shopCipher, shopId, appSecret, }: TikTokConfig);
     private generateRequestSign;
-    setShop({ shopChiper, shopId }: {
-        shopChiper: string;
+    setShop({ shopCipher, shopId }: {
+        shopCipher: string;
         shopId: string;
     }): void;
     getShops(): Promise<any>;

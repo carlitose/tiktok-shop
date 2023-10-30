@@ -8,11 +8,11 @@ interface Config {
     appKey: string;
     appSecret: string;
     accessToken: string;
-    shopChiper: string;
+    shopCipher: string;
     shopId: string;
 }
 
-function TitTokClient({appKey, appSecret, accessToken, shopChiper, shopId}: Config){
+function TitTokClient({appKey, appSecret, accessToken, shopCipher, shopId}: Config){
     if (!appKey) {
         throw new Error('appKey is required');
     }
@@ -22,7 +22,7 @@ function TitTokClient({appKey, appSecret, accessToken, shopChiper, shopId}: Conf
     if (!appSecret) {
         throw new Error('appSecret is required');
     }
-    return new TikTok({appKey, accessToken, shopChiper, shopId, appSecret});
+    return new TikTok({appKey, accessToken, shopCipher, shopId, appSecret});
 }
 
 function signature(config: Config, path: string) {

@@ -25,7 +25,7 @@ import type {
 interface TikTokConfig {
   appKey: string;
   accessToken: string;
-  shopChiper?: string;
+  shopCipher?: string;
   shopId?: string;
   appSecret: string;
 }
@@ -33,20 +33,20 @@ interface TikTokConfig {
 class TikTok {
   private appKey: string;
   private accessToken: string;
-  private shopChiper?: string;
+  private shopCipher?: string;
   private shopId?: string;
   private appSecret: string;
 
   constructor({
     appKey,
     accessToken,
-    shopChiper,
+    shopCipher,
     shopId,
     appSecret,
   }: TikTokConfig) {
     this.appKey = appKey;
     this.accessToken = accessToken;
-    this.shopChiper = shopChiper;
+    this.shopCipher = shopCipher;
     this.shopId = shopId;
     this.appSecret = appSecret;
   }
@@ -54,12 +54,12 @@ class TikTok {
   private generateRequestSign(endpoint: string, bodyData: any = {}) {
     const accessToken = this.accessToken;
     const appKey = this.appKey;
-    const shopChiper = this.shopChiper;
+    const shopCipher = this.shopCipher;
     const shopId = this.shopId;
     const appSecret = this.appSecret;
 
-    const myUrl = `${BASE_URL}${endpoint}?access_token=${accessToken}&app_key=${appKey}&shop_chiper=${
-      shopChiper || ""
+    const myUrl = `${BASE_URL}${endpoint}?access_token=${accessToken}&app_key=${appKey}&shop_cipher=${
+      shopCipher || ""
     }&shop_id=${shopId || ""}&version=${VERSION}`;
 
     const { signature, timestamp } = Common.signByUrl(myUrl, appSecret);
@@ -72,8 +72,8 @@ class TikTok {
     return { url, headers, data: bodyData };
   }
 
-  setShop({ shopChiper, shopId }: { shopChiper: string; shopId: string }) {
-    this.shopChiper = shopChiper;
+  setShop({ shopCipher, shopId }: { shopCipher: string; shopId: string }) {
+    this.shopCipher = shopCipher;
     this.shopId = shopId;
   }
   async getShops() {

@@ -165,7 +165,7 @@ const client = tiktokShop.TitTokClient(
     appKey:'yourAppKey', 
     appSecret:'yourAppSecret', 
     accessToken:'yourAccessToken', 
-    shopChiper:'yourShopChiper', 
+    shopCipher:'yourShopCipher', 
     shopId:'yourShopId'
   });
 

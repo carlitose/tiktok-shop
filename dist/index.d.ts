@@ -3,10 +3,10 @@ interface Config {
     appKey: string;
     appSecret: string;
     accessToken: string;
-    shopChiper: string;
+    shopCipher: string;
     shopId: string;
 }
-declare function TitTokClient({ appKey, appSecret, accessToken, shopChiper, shopId }: Config): TikTok;
+declare function TitTokClient({ appKey, appSecret, accessToken, shopCipher, shopId }: Config): TikTok;
 declare function signature(config: Config, path: string): {
     signature: string;
     timestamp: number;

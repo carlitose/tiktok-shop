@@ -17,7 +17,7 @@ const axios_1 = __importDefault(require("axios"));
 const common_1 = __importDefault(require("./common/common"));
 const authorized_1 = require("./services/authorized");
 const api_1 = __importDefault(require("./api/api"));
-function TitTokClient({ appKey, appSecret, accessToken, shopChiper, shopId }) {
+function TitTokClient({ appKey, appSecret, accessToken, shopCipher, shopId }) {
     if (!appKey) {
         throw new Error('appKey is required');
     }
@@ -27,7 +27,7 @@ function TitTokClient({ appKey, appSecret, accessToken, shopChiper, shopId }) {
     if (!appSecret) {
         throw new Error('appSecret is required');
     }
-    return new api_1.default({ appKey, accessToken, shopChiper, shopId, appSecret });
+    return new api_1.default({ appKey, accessToken, shopCipher, shopId, appSecret });
 }
 exports.TitTokClient = TitTokClient;
 function signature(config, path) {

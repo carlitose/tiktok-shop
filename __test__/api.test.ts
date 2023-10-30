@@ -25,7 +25,7 @@ describe("TikTok API", () => {
     tikTok = new TikTok({
       appKey: "test",
       accessToken: "test",
-      shopChiper: "test",
+      shopCipher: "test",
       shopId: "test",
       appSecret: "test",
     });
