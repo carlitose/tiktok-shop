@@ -93,8 +93,8 @@ class Common {
     }
     static checkConfig(config) {
         let error = "";
-        if (!(config.app_key && config.app_secret)) {
-            const compareArray = ["app_key", "app_secret"];
+        if (!(config.appKey && config.appSecret)) {
+            const compareArray = ["appKey", "appSecret"];
             const keysArray = Object.keys(config);
             const missing = compareArray.filter((item) => !keysArray.includes(item));
             error = `config must have ${missing.toString()}`;
