@@ -157,10 +157,17 @@ Response Data
 The TikTok Shop Client API can be easily used to interact with the TikTok API. Here is an example of how it can be used:
 
 ```javascript
-const TitTokClient = require('tiktok-shop');
+const tiktokShop = require('tiktok-shop');
 
 // Create a new client
-const client = TitTokClient('yourAppKey', 'yourAppSecret', 'yourAccessToken', 'yourShopChiper', 'yourShopId');
+const client = tiktokShop.TitTokClient(
+  {
+    appKey:'yourAppKey', 
+    appSecret:'yourAppSecret', 
+    accessToken:'yourAccessToken', 
+    shopChiper:'yourShopChiper', 
+    shopId:'yourShopId'
+  });
 
 // Now you can use the client to call the API
 // For instance, here is how you can get a product:
