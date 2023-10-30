@@ -14,6 +14,10 @@ declare class TikTok {
     private appSecret;
     constructor({ appKey, accessToken, shopChiper, shopId, appSecret, }: TikTokConfig);
     private generateRequestSign;
+    setShop({ shopChiper, shopId }: {
+        shopChiper: string;
+        shopId: string;
+    }): void;
     getShops(): Promise<any>;
     getProduct(id: string): Promise<any>;
     searchInventory(bodyData?: {}): Promise<any>;

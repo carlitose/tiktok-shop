@@ -71,6 +71,11 @@ class TikTok {
 
     return { url, headers, data: bodyData };
   }
+
+  setShop({ shopChiper, shopId }: { shopChiper: string; shopId: string }) {
+    this.shopChiper = shopChiper;
+    this.shopId = shopId;
+  }
   async getShops() {
     const { url, headers, data } = this.generateRequestSign(
       `/authorization/${VERSION}/shops`
@@ -143,7 +148,7 @@ class TikTok {
     }
   }
 
-  async recommendCategory(product:Recommendation) {
+  async recommendCategory(product: Recommendation) {
     const { error } = recommendationSchema.validate(product);
     if (error) {
       throw new Error(`Invalid data: ${error.details[0].message}`);
@@ -162,7 +167,7 @@ class TikTok {
     }
   }
 
-  async updateProduct(id:string, productData:Product) {
+  async updateProduct(id: string, productData: Product) {
     const { error } = productSchema.validate(productData);
     if (error) {
       throw new Error(`Invalid product data: ${error.details[0].message}`);
@@ -194,7 +199,7 @@ class TikTok {
     }
   }
 
-  async updateProductPrices(id:string, skus:ProductPrices) {
+  async updateProductPrices(id: string, skus: ProductPrices) {
     const { error } = productPricesSchema.validate(skus);
     if (error) {
       throw new Error(`Invalid SKU data: ${error.details[0].message}`);
@@ -213,7 +218,7 @@ class TikTok {
     }
   }
 
-  async partiallyEditProduct(id:string, productData:ProductPartialEdit) {
+  async partiallyEditProduct(id: string, productData: ProductPartialEdit) {
     const { error } = productPartailEditSchema.validate(productData);
     if (error) {
       throw new Error(`Invalid product data: ${error.details[0].message}`);
@@ -232,7 +237,7 @@ class TikTok {
     }
   }
 
-  async getCategoryAttributes(id:string) {
+  async getCategoryAttributes(id: string) {
     const { url, headers, data } = this.generateRequestSign(
       `/product/${VERSION}/categories/${id}/attributes`,
       {
@@ -248,7 +253,7 @@ class TikTok {
     }
   }
 
-  async updateProductInventory(id:string, skus:SkuInventory[]) {
+  async updateProductInventory(id: string, skus: SkuInventory[]) {
     const { error } = skuInventorySchema.validate(skus);
     if (error) {
       throw new Error(`Invalid SKU data: ${error.details[0].message}`);
@@ -269,7 +274,7 @@ class TikTok {
     }
   }
 
-  async activateProducts(productIds:ProductIds) {
+  async activateProducts(productIds: ProductIds) {
     const { error } = productIdsSchema.validate(productIds);
     if (error) {
       throw new Error(`Invalid product ids: ${error.details[0].message}`);
@@ -290,7 +295,7 @@ class TikTok {
     }
   }
 
-  async deactivateProducts(productIds:ProductIds) {
+  async deactivateProducts(productIds: ProductIds) {
     const { error } = productIdsSchema.validate(productIds);
     if (error) {
       throw new Error(`Invalid product ids: ${error.details[0].message}`);
@@ -311,7 +316,7 @@ class TikTok {
     }
   }
 
-  async deleteProducts(productIds:ProductIds) {
+  async deleteProducts(productIds: ProductIds) {
     const { error } = productIdsSchema.validate(productIds);
     if (error) {
       throw new Error(`Invalid product ids: ${error.details[0].message}`);
@@ -330,7 +335,7 @@ class TikTok {
     }
   }
 
-  async recoverProducts(productIds:ProductIds) {
+  async recoverProducts(productIds: ProductIds) {
     const { error } = productIdsSchema.validate(productIds);
     if (error) {
       throw new Error(`Invalid product ids: ${error.details[0].message}`);

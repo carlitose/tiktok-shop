@@ -40,6 +40,10 @@ class TikTok {
         };
         return { url, headers, data: bodyData };
     }
+    setShop({ shopChiper, shopId }) {
+        this.shopChiper = shopChiper;
+        this.shopId = shopId;
+    }
     getShops() {
         return __awaiter(this, void 0, void 0, function* () {
             const { url, headers, data } = this.generateRequestSign(`/authorization/${VERSION}/shops`);
