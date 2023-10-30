@@ -1,5 +1,5 @@
 {
-  "name": "tiktok-shop",
+  "name": "tiktok-shop-client",
   "version": "1.0.5",
   "description": "Generate \"signature\" and \"token\" for Tiktok Shop.",
   "main": "dist/index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tudinhacoustic/tiktok-shop.git"
+    "url": "git+https://github.com/carlitose/tiktok-shop.git"
   },
   "author": "Tu Dinh Acoustic",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tudinhacoustic/tiktok-shop/issues"
+    "url": "https://github.com/carlitose/tiktok-shop/issues"
   },
-  "homepage": "https://github.com/tudinhacoustic/tiktok-shop#readme",
+  "homepage": "https://github.com/carlitose/tiktok-shop#readme",
   "dependencies": {
     "axios": "^1.6.0",
     "joi": "^17.11.0"
