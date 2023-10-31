@@ -6,7 +6,7 @@ interface Config {
     shopCipher: string;
     shopId: string;
 }
-declare function TitTokClient({ appKey, appSecret, accessToken, shopCipher, shopId }: Config): TikTok;
+declare function TikTokClient({ appKey, appSecret, accessToken, shopCipher, shopId }: Config): TikTok;
 declare function signature(config: Config, path: string): {
     signature: string;
     timestamp: number;
@@ -17,4 +17,4 @@ declare function signByUrl(url?: string, appSecret?: string): {
     signature: string;
     timestamp: number;
 };
-export { signature, authCodeToken, generateToken, signByUrl, TitTokClient };
+export { signature, authCodeToken, generateToken, signByUrl, TikTokClient };

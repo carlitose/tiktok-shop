@@ -51,7 +51,7 @@ class TikTok {
     this.appSecret = appSecret;
   }
 
-  private generateRequestSign(endpoint: string, bodyData: any = {}) {
+  private generateRequestSign(endpoint: string, bodyData: object = {}) {
     const accessToken = this.accessToken;
     const appKey = this.appKey;
     const shopCipher = this.shopCipher;
@@ -62,7 +62,7 @@ class TikTok {
       shopCipher || ""
     }&shop_id=${shopId || ""}&version=${VERSION}`;
 
-    const { signature, timestamp } = Common.signByUrl(myUrl, appSecret);
+    const { signature, timestamp } = Common.signByUrl(myUrl, appSecret, bodyData);
 
     const url = `${myUrl}&timestamp=${timestamp}&sign=${signature}`;
     const headers = {

@@ -33,7 +33,7 @@ class TikTok {
         const shopId = this.shopId;
         const appSecret = this.appSecret;
         const myUrl = `${BASE_URL}${endpoint}?access_token=${accessToken}&app_key=${appKey}&shop_cipher=${shopCipher || ""}&shop_id=${shopId || ""}&version=${VERSION}`;
-        const { signature, timestamp } = common_1.default.signByUrl(myUrl, appSecret);
+        const { signature, timestamp } = common_1.default.signByUrl(myUrl, appSecret, bodyData);
         const url = `${myUrl}&timestamp=${timestamp}&sign=${signature}`;
         const headers = {
             "x-tts-access-token": accessToken,

@@ -16,11 +16,11 @@ export default class Common {
     };
     static getKeyValue(obj?: any): string;
     static checkConfig(config: any): string;
-    static signatureByAppSecret(params?: any, path?: string, appSecret?: string): {
+    static signatureByAppSecret(params?: any, path?: string, appSecret?: string, body?: object): {
         signature: string;
         timestamp: number;
     };
-    static signByUrl(url?: string, appSecret?: string): {
+    static signByUrl(url?: string, appSecret?: string, body?: object): {
         signature: string;
         timestamp: number;
     };

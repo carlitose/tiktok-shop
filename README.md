@@ -160,7 +160,7 @@ The TikTok Shop Client API can be easily used to interact with the TikTok API. H
 const tiktokShop = require('tiktok-shop');
 
 // Create a new client
-const client = tiktokShop.TitTokClient(
+const client = tiktokShop.TikTokClient(
   {
     appKey:'yourAppKey', 
     appSecret:'yourAppSecret', 

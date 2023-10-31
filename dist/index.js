@@ -12,12 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TitTokClient = exports.signByUrl = exports.generateToken = exports.authCodeToken = exports.signature = void 0;
+exports.TikTokClient = exports.signByUrl = exports.generateToken = exports.authCodeToken = exports.signature = void 0;
 const axios_1 = __importDefault(require("axios"));
 const common_1 = __importDefault(require("./common/common"));
 const authorized_1 = require("./services/authorized");
 const api_1 = __importDefault(require("./api/api"));
-function TitTokClient({ appKey, appSecret, accessToken, shopCipher, shopId }) {
+function TikTokClient({ appKey, appSecret, accessToken, shopCipher, shopId }) {
     if (!appKey) {
         throw new Error('appKey is required');
     }
@@ -29,7 +29,7 @@ function TitTokClient({ appKey, appSecret, accessToken, shopCipher, shopId }) {
     }
     return new api_1.default({ appKey, accessToken, shopCipher, shopId, appSecret });
 }
-exports.TitTokClient = TitTokClient;
+exports.TikTokClient = TikTokClient;
 function signature(config, path) {
     const error = common_1.default.checkConfig(config);
     if (error) {

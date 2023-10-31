@@ -12,7 +12,7 @@ interface Config {
     shopId: string;
 }
 
-function TitTokClient({appKey, appSecret, accessToken, shopCipher, shopId}: Config){
+function TikTokClient({appKey, appSecret, accessToken, shopCipher, shopId}: Config){
     if (!appKey) {
         throw new Error('appKey is required');
     }
@@ -85,5 +85,5 @@ export {
     authCodeToken,
     generateToken,
     signByUrl,
-    TitTokClient
+    TikTokClient
 }
