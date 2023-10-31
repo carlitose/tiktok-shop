@@ -224,4 +224,10 @@ describe("TikTok API", () => {
     const data = await tikTok.recoverProducts(validProductIds);
     expect(data).toBe("test");
   });
+  it("addImage", async () => {
+    const resp = { data: "test" };
+    mockedAxios.post.mockResolvedValue(resp);
+    const data = await tikTok.addImage('123459683472398dgfkasjhfgdaskjhf');
+    expect(data).toBe("test");
+  });
 });

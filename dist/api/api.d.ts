@@ -34,5 +34,6 @@ declare class TikTok {
     deactivateProducts(productIds: ProductIds): Promise<any>;
     deleteProducts(productIds: ProductIds): Promise<any>;
     recoverProducts(productIds: ProductIds): Promise<any>;
+    addImage(image: string): Promise<any>;
 }
 export default TikTok;

@@ -286,5 +286,17 @@ class TikTok {
             }
         });
     }
+    addImage(image) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { url, headers } = this.generateRequestSign(`/product/${VERSION}/image/upload`);
+            try {
+                const response = yield axios_1.default.post(url, { data: image }, { headers: Object.assign(Object.assign({}, headers), { "Content-type": "multipart/form-data" }) });
+                return response.data;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
 }
 exports.default = TikTok;

@@ -62,7 +62,11 @@ class TikTok {
       shopCipher || ""
     }&shop_id=${shopId || ""}&version=${VERSION}`;
 
-    const { signature, timestamp } = Common.signByUrl(myUrl, appSecret, bodyData);
+    const { signature, timestamp } = Common.signByUrl(
+      myUrl,
+      appSecret,
+      bodyData
+    );
 
     const url = `${myUrl}&timestamp=${timestamp}&sign=${signature}`;
     const headers = {
@@ -354,6 +358,24 @@ class TikTok {
     } catch (error) {
       throw error;
     }
+  }
+
+  async addImage(image: string) {
+    const { url, headers } = this.generateRequestSign(
+      `/product/${VERSION}/image/upload`
+    );
+
+    try {
+      const response = await axios.post(
+        url,
+        { data: image },
+        { headers: { ...headers, "Content-type": "multipart/form-data" } }
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+    
   }
 }
 
