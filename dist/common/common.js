@@ -101,7 +101,7 @@ class Common {
         }
         return error;
     }
-    static signatureByAppSecret(params = {}, path = "", appSecret = "", body = {}) {
+    static signatureByAppSecret(params = {}, path = "", appSecret = "", body) {
         let input = "";
         let timestamp = this.timestamp();
         if (params.timestamp) {
@@ -112,14 +112,15 @@ class Common {
         for (let index = 0; index < key.length; index += 1) {
             input += key[index] + modParams[key[index]];
         }
-        const plainText = appSecret + path + input + JSON.stringify(body) + appSecret;
+        const bodyText = body ? JSON.stringify(body) : '';
+        const plainText = `${appSecret}${path}${input}${bodyText}${appSecret}`;
         const signature = this.sha256Decoded(plainText, appSecret);
         return {
             signature: signature,
             timestamp,
         };
     }
-    static signByUrl(url = "", appSecret = "", body = {}) {
+    static signByUrl(url = "", appSecret = "", body) {
         const { path, query } = this.getPathQueryFromUrl(decodeURIComponent(url));
         const params = this.parseQueryString(query);
         return this.signatureByAppSecret(params, path, appSecret, body);
