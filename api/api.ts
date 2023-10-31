@@ -51,7 +51,7 @@ class TikTok {
     this.appSecret = appSecret;
   }
 
-  private generateRequestSign(endpoint: string, bodyData: object = {}) {
+  private generateRequestSign(endpoint: string, bodyData?: object) {
     const accessToken = this.accessToken;
     const appKey = this.appKey;
     const shopCipher = this.shopCipher;

@@ -104,7 +104,7 @@ export default class Common {
     params: any = {},
     path: string = "",
     appSecret: string = "",
-    body: object = {}
+    body?: object
   ) {
     let input = "";
     let timestamp = this.timestamp();
@@ -116,14 +116,15 @@ export default class Common {
     for (let index = 0; index < key.length; index += 1) {
       input += key[index] + modParams[key[index]];
     }
-    const plainText = appSecret + path + input+ JSON.stringify(body) + appSecret;
+    const bodyText = body ? JSON.stringify(body) : '';
+    const plainText = `${appSecret}${path}${input}${bodyText}${appSecret}`;
     const signature = this.sha256Decoded(plainText, appSecret);
     return {
       signature: signature,
       timestamp,
     };
   }
-  static signByUrl(url: string = "", appSecret: string = "", body:object={}) {
+  static signByUrl(url: string = "", appSecret: string = "", body?:object) {
     const { path, query } = this.getPathQueryFromUrl(decodeURIComponent(url));
     const params = this.parseQueryString(query);
     return this.signatureByAppSecret(params, path, appSecret, body);
