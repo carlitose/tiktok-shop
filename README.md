@@ -6,10 +6,6 @@
   
   I am very happy and grateful for everyone's help. These meaningful contributions will greatly help me in expanding the useful library to help people.
 
-  <a href="https://www.buymeacoffee.com/tudinhacoustic" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
-
-  Paypal: https://paypal.me/tudinhacoustic
-
 ## Content
 - [Content](#content)
 - [Installation](#installation)
