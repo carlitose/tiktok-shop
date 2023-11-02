@@ -227,7 +227,7 @@ describe("TikTok API", () => {
   it("addImage", async () => {
     const resp = { data: "test" };
     mockedAxios.post.mockResolvedValue(resp);
-    const data = await tikTok.addImage('123459683472398dgfkasjhfgdaskjhf');
+    const data = await tikTok.addImage('123459683472398dgfkasjhfgdaskjhf' as any);
     expect(data).toBe("test");
   });
 });

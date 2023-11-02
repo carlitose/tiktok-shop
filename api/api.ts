@@ -8,7 +8,7 @@ import {
   skuInventorySchema,
   productIdsSchema,
 } from "./schemas";
-
+import { ReadStream } from "fs";
 const BASE_URL = "https://open-api.tiktokglobalshop.com";
 const VERSION = "202309";
 const LOCALE = "en-US";
@@ -51,16 +51,22 @@ class TikTok {
     this.appSecret = appSecret;
   }
 
-  private generateRequestSign(endpoint: string, bodyData?: object) {
+  private generateRequestSign(
+    endpoint: string,
+    bodyData?: object,
+    weNeedShopCipher: boolean = true
+  ) {
     const accessToken = this.accessToken;
     const appKey = this.appKey;
     const shopCipher = this.shopCipher;
     const shopId = this.shopId;
     const appSecret = this.appSecret;
 
-    const myUrl = `${BASE_URL}${endpoint}?access_token=${accessToken}&app_key=${appKey}&shop_cipher=${
-      shopCipher || ""
-    }&shop_id=${shopId || ""}&version=${VERSION}`;
+    let myUrl = `${BASE_URL}${endpoint}?access_token=${accessToken}&app_key=${appKey}`;
+    if (weNeedShopCipher) {
+      myUrl += `&shop_cipher=${shopCipher || ""}`;
+    }
+    myUrl += `&shop_id=${shopId || ""}&version=${VERSION}`;
 
     const { signature, timestamp } = Common.signByUrl(
       myUrl,
@@ -360,11 +366,12 @@ class TikTok {
     }
   }
 
-  async addImage(image: string) {
+  async addImage(image: ReadStream) {
     const { url, headers } = this.generateRequestSign(
-      `/product/${VERSION}/image/upload`
+      `/product/${VERSION}/images/upload`,
+      undefined,
+      false
     );
-
     try {
       const response = await axios.post(
         url,
@@ -375,7 +382,6 @@ class TikTok {
     } catch (error) {
       throw error;
     }
-    
   }
 }
 

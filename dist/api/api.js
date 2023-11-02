@@ -26,13 +26,17 @@ class TikTok {
         this.shopId = shopId;
         this.appSecret = appSecret;
     }
-    generateRequestSign(endpoint, bodyData) {
+    generateRequestSign(endpoint, bodyData, weNeedShopCipher = true) {
         const accessToken = this.accessToken;
         const appKey = this.appKey;
         const shopCipher = this.shopCipher;
         const shopId = this.shopId;
         const appSecret = this.appSecret;
-        const myUrl = `${BASE_URL}${endpoint}?access_token=${accessToken}&app_key=${appKey}&shop_cipher=${shopCipher || ""}&shop_id=${shopId || ""}&version=${VERSION}`;
+        let myUrl = `${BASE_URL}${endpoint}?access_token=${accessToken}&app_key=${appKey}`;
+        if (weNeedShopCipher) {
+            myUrl += `&shop_cipher=${shopCipher || ""}`;
+        }
+        myUrl += `&shop_id=${shopId || ""}&version=${VERSION}`;
         const { signature, timestamp } = common_1.default.signByUrl(myUrl, appSecret, bodyData);
         const url = `${myUrl}&timestamp=${timestamp}&sign=${signature}`;
         const headers = {
@@ -288,7 +292,7 @@ class TikTok {
     }
     addImage(image) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { url, headers } = this.generateRequestSign(`/product/${VERSION}/image/upload`);
+            const { url, headers } = this.generateRequestSign(`/product/${VERSION}/images/upload`, undefined, false);
             try {
                 const response = yield axios_1.default.post(url, { data: image }, { headers: Object.assign(Object.assign({}, headers), { "Content-type": "multipart/form-data" }) });
                 return response.data;
