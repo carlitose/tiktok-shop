@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.productIdsSchema = exports.skuInventorySchema = exports.productPartailEditSchema = exports.productPricesSchema = exports.recommendationSchema = exports.productSchema = void 0;
 const joi_1 = __importDefault(require("joi"));
 const imageSchema = joi_1.default.object({
-    uri: joi_1.default.string().uri().required(),
+    uri: joi_1.default.string().required(),
     width: joi_1.default.number().required().max(4000),
     height: joi_1.default.number().required().max(4000),
 });

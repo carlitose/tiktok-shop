@@ -2,7 +2,7 @@
 import Joi from 'joi';
 
 const imageSchema = Joi.object({
-	uri: Joi.string().uri().required(),
+	uri: Joi.string().required(),
 	width: Joi.number().required().max(4000),
 	height: Joi.number().required().max(4000),
 });
