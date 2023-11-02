@@ -36,7 +36,7 @@ describe("TikTok API", () => {
         validProductData = {
             description: "Test Product",
             category_id: "test",
-            main_images: [{ src: "http://example.com", width: 1000, height: 1000 }],
+            main_images: [{ uri: "http://example.com", width: 1000, height: 1000 }],
             skus: [
                 {
                     id: "test",
@@ -44,7 +44,7 @@ describe("TikTok API", () => {
                         {
                             id: "test",
                             name: "test",
-                            sku_img: { src: "http://example.com", width: 1000, height: 1000 },
+                            sku_img: { uri: "http://example.com", width: 1000, height: 1000 },
                             value_id: "test",
                             value_name: "test",
                         },
@@ -59,7 +59,7 @@ describe("TikTok API", () => {
         invalidProductData = {
             description: "",
             category_id: "test",
-            main_images: [{ src: "http://example.com", width: 1000, height: 1000 }],
+            main_images: [{ uri: "http://example.com", width: 1000, height: 1000 }],
             title: "Test Product",
             package_weight: { unit: "KILOGRAM", value: 1 },
         };
@@ -73,7 +73,7 @@ describe("TikTok API", () => {
                             id: "test",
                             name: "test",
                             sku_img: {
-                                src: "http://example.com/test.jpg",
+                                uri: "http://example.com/test.jpg",
                                 width: 1,
                                 height: 1,
                             },
