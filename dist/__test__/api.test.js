@@ -54,14 +54,14 @@ describe("TikTok API", () => {
                 },
             ],
             title: "Test Product",
-            package_weight: { unit: "KILOGRAM", value: 1 },
+            package_weight: { unit: "KILOGRAM", value: '1' },
         };
         invalidProductData = {
             description: "",
             category_id: "test",
             main_images: [{ uri: "http://example.com", width: 1000, height: 1000 }],
             title: "Test Product",
-            package_weight: { unit: "KILOGRAM", value: 1 },
+            package_weight: { unit: "KILOGRAM", value: '1' },
         };
         validProductIds = ["test1", "test2", "test3"];
         validSkuPriceData = {

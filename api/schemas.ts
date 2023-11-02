@@ -34,7 +34,7 @@ const skuSchema = Joi.object({
 
 const packageWeightSchema = Joi.object({
 	unit: Joi.string().valid('CENTIMETER', 'KILOGRAM', 'INCH', 'POUND').required(),
-	value: Joi.number().required(),
+	value: Joi.string().required(),
 });
 const certificationSchema = Joi.object();
 
@@ -57,7 +57,7 @@ const productSchema = Joi.object({
 	is_cod_allowed: Joi.boolean().optional(),
 	certifications: Joi.array().optional().items(certificationSchema),
 	package_weight: packageWeightSchema.required(),
-	product_attributes: Joi.object().optional(),
+	product_attributes: Joi.array().items(Joi.object()).optional(),
 	size_chart: Joi.object().optional(),
 	package_dimensions: Joi.object().optional(),
 	external_product_id: Joi.string().optional(),
@@ -74,7 +74,7 @@ const productPartailEditSchema = Joi.object({
 	is_cod_allowed: Joi.boolean().optional(),
 	certifications: Joi.array().optional().items(certificationSchema),
 	package_weight: packageWeightSchema.optional(),
-	product_attributes: Joi.object().optional(),
+	product_attributes: Joi.array().items(Joi.object()).optional(),
 	size_chart: Joi.object().optional(),
 	package_dimensions: Joi.object().optional(),
 	external_product_id: Joi.string().optional(),

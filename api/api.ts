@@ -101,7 +101,7 @@ class TikTok {
 
   async getProduct(id: string) {
     const { url, headers, data } = this.generateRequestSign(
-      `/${VERSION}/products/${id}`
+      `/product/${VERSION}/products/${id}`
     );
 
     try {
@@ -114,7 +114,7 @@ class TikTok {
 
   async searchInventory(bodyData = {}) {
     const { url, headers, data } = this.generateRequestSign(
-      `/${VERSION}/inventory/search`,
+      `/product/${VERSION}/inventory/search`,
       bodyData
     );
 
@@ -133,7 +133,7 @@ class TikTok {
     }
 
     const { url, headers, data } = this.generateRequestSign(
-      `/${VERSION}/products`,
+      `/product/${VERSION}/products`,
       productData
     );
 

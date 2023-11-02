@@ -33,7 +33,7 @@ const skuSchema = joi_1.default.object({
 });
 const packageWeightSchema = joi_1.default.object({
     unit: joi_1.default.string().valid('CENTIMETER', 'KILOGRAM', 'INCH', 'POUND').required(),
-    value: joi_1.default.number().required(),
+    value: joi_1.default.string().required(),
 });
 const certificationSchema = joi_1.default.object();
 const videoSchema = joi_1.default.object({
@@ -54,7 +54,7 @@ const productSchema = joi_1.default.object({
     is_cod_allowed: joi_1.default.boolean().optional(),
     certifications: joi_1.default.array().optional().items(certificationSchema),
     package_weight: packageWeightSchema.required(),
-    product_attributes: joi_1.default.object().optional(),
+    product_attributes: joi_1.default.array().items(joi_1.default.object()).optional(),
     size_chart: joi_1.default.object().optional(),
     package_dimensions: joi_1.default.object().optional(),
     external_product_id: joi_1.default.string().optional(),
@@ -72,7 +72,7 @@ const productPartailEditSchema = joi_1.default.object({
     is_cod_allowed: joi_1.default.boolean().optional(),
     certifications: joi_1.default.array().optional().items(certificationSchema),
     package_weight: packageWeightSchema.optional(),
-    product_attributes: joi_1.default.object().optional(),
+    product_attributes: joi_1.default.array().items(joi_1.default.object()).optional(),
     size_chart: joi_1.default.object().optional(),
     package_dimensions: joi_1.default.object().optional(),
     external_product_id: joi_1.default.string().optional(),

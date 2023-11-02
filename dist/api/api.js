@@ -62,7 +62,7 @@ class TikTok {
     }
     getProduct(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { url, headers, data } = this.generateRequestSign(`/${VERSION}/products/${id}`);
+            const { url, headers, data } = this.generateRequestSign(`/product/${VERSION}/products/${id}`);
             try {
                 const response = yield axios_1.default.get(url, { headers, data });
                 return response.data;
@@ -74,7 +74,7 @@ class TikTok {
     }
     searchInventory(bodyData = {}) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { url, headers, data } = this.generateRequestSign(`/${VERSION}/inventory/search`, bodyData);
+            const { url, headers, data } = this.generateRequestSign(`/product/${VERSION}/inventory/search`, bodyData);
             try {
                 const response = yield axios_1.default.post(url, data, { headers });
                 return response.data;
@@ -90,7 +90,7 @@ class TikTok {
             if (error) {
                 throw new Error(`Invalid product data: ${error.details[0].message}`);
             }
-            const { url, headers, data } = this.generateRequestSign(`/${VERSION}/products`, productData);
+            const { url, headers, data } = this.generateRequestSign(`/product/${VERSION}/products`, productData);
             try {
                 const response = yield axios_1.default.post(url, data, { headers });
                 return response.data;

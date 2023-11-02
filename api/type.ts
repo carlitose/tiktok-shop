@@ -14,7 +14,7 @@ export interface Attribute {
 
 export interface Price {
 	amount: string;
-	currency: 'DOLLARS';
+	currency: string;
 }
 
 export interface Inventory {
@@ -30,8 +30,8 @@ export interface Sku {
 }
 
 export interface PackageWeight {
-	unit: 'CENTIMETER' | 'KILOGRAM' | 'INCH' | 'POUND';
-	value: number;
+	unit: string;
+	value: string;
 }
 
 export interface Certification {}
@@ -53,7 +53,7 @@ export interface Product {
 	is_cod_allowed?: boolean;
 	certifications?: Certification[];
 	package_weight: PackageWeight;
-	product_attributes?: object;
+	product_attributes?: object[];
 	size_chart?: object;
 	package_dimensions?: object;
 	external_product_id?: string;
@@ -71,7 +71,7 @@ export interface ProductPartialEdit {
 	is_cod_allowed?: boolean;
 	certifications?: Certification[];
 	package_weight?: PackageWeight;
-	product_attributes?: object;
+	product_attributes?: object[];
 	size_chart?: object;
 	package_dimensions?: object;
 	external_product_id?: string;
