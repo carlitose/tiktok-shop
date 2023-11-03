@@ -7,7 +7,7 @@ export interface Image {
 export interface Attribute {
 	id: string;
 	name: string;
-	sku_img: Image;
+	sku_img?: Image;
 	value_id: string;
 	value_name: string;
 }
@@ -23,7 +23,8 @@ export interface Inventory {
 }
 
 export interface Sku {
-	id: string;
+	id?: string;
+	external_sku_id?: string;
 	sales_attributes: Attribute[];
 	price: Price;
 	inventory: Inventory[];
@@ -37,8 +38,8 @@ export interface PackageWeight {
 export interface Certification {}
 
 export interface Video {
-	ratio?: '1:1';
-	resolution?: 'HD 720P';
+	ratio?: string
+	resolution?: string;
 	duration?: number;
 	selling_points?: string[];
 }
@@ -94,3 +95,7 @@ export interface SkuInventory {
 }
 
 export type ProductIds = string[];
+
+export interface Brand {
+	name:string
+} 

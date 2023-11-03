@@ -7,11 +7,11 @@ import {
   productPartailEditSchema,
   skuInventorySchema,
   productIdsSchema,
+  brandSchema,
 } from "./schemas";
 import { ReadStream } from "fs";
 const BASE_URL = "https://open-api.tiktokglobalshop.com";
 const VERSION = "202309";
-const LOCALE = "en-US";
 
 import type {
   Product,
@@ -20,6 +20,7 @@ import type {
   SkuInventory,
   ProductPartialEdit,
   ProductIds,
+  Brand,
 } from "./type";
 
 interface TikTokConfig {
@@ -54,6 +55,7 @@ class TikTok {
   private generateRequestSign(
     endpoint: string,
     bodyData?: object,
+    query: string = "",
     weNeedShopCipher: boolean = true
   ) {
     const accessToken = this.accessToken;
@@ -66,7 +68,7 @@ class TikTok {
     if (weNeedShopCipher) {
       myUrl += `&shop_cipher=${shopCipher || ""}`;
     }
-    myUrl += `&shop_id=${shopId || ""}&version=${VERSION}`;
+    myUrl += `&shop_id=${shopId || ""}&version=${VERSION}${query}`;
 
     const { signature, timestamp } = Common.signByUrl(
       myUrl,
@@ -93,6 +95,44 @@ class TikTok {
 
     try {
       const response = await axios.get(url, { headers, data });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+  async getBrands(brandName: string, categoryId?: string) {
+    const query = categoryId
+      ? `&category_id=${categoryId}&brand_name=${brandName}&page_size=100&is_authorized=true`
+      : `&brand_name=${brandName}&page_size=100&is_authorized=true`;
+    const { url, headers, data } = this.generateRequestSign(
+      `/product/${VERSION}/brands`,
+      undefined,
+     query
+    );
+
+    try {
+      const response = await axios.get(url, { headers, data });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async addCustomBrands(brand: Brand) {
+    const { error } = brandSchema.validate(brand);
+    if (error) {
+      throw new Error(`Invalid product data: ${error.details[0].message}`);
+    }
+
+    const { url, headers, data } = this.generateRequestSign(
+      `/product/${VERSION}/brands`,
+      brand,
+      "",
+      false
+    );
+
+    try {
+      const response = await axios.post(url, data, { headers });
       return response.data;
     } catch (error) {
       throw error;
@@ -250,13 +290,12 @@ class TikTok {
   async getCategoryAttributes(id: string) {
     const { url, headers, data } = this.generateRequestSign(
       `/product/${VERSION}/categories/${id}/attributes`,
-      {
-        locale: LOCALE,
-      }
+      undefined,
+      '&locale=en-US'
     );
 
     try {
-      const response = await axios.get(url, { headers, data });
+      const response = await axios.get(url, { headers });
       return response.data;
     } catch (error) {
       throw error;
@@ -370,6 +409,7 @@ class TikTok {
     const { url, headers } = this.generateRequestSign(
       `/product/${VERSION}/images/upload`,
       undefined,
+      "",
       false
     );
     try {

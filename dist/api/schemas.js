@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.productIdsSchema = exports.skuInventorySchema = exports.productPartailEditSchema = exports.productPricesSchema = exports.recommendationSchema = exports.productSchema = void 0;
+exports.brandSchema = exports.productIdsSchema = exports.skuInventorySchema = exports.productPartailEditSchema = exports.productPricesSchema = exports.recommendationSchema = exports.productSchema = void 0;
 const joi_1 = __importDefault(require("joi"));
 const imageSchema = joi_1.default.object({
     uri: joi_1.default.string().required(),
@@ -13,31 +13,34 @@ const imageSchema = joi_1.default.object({
 const attributeSchema = joi_1.default.object({
     id: joi_1.default.string().required(),
     name: joi_1.default.string().required(),
-    sku_img: imageSchema,
+    sku_img: imageSchema.optional(),
     value_id: joi_1.default.string().required(),
     value_name: joi_1.default.string().required(),
 });
 const priceSchema = joi_1.default.object({
     amount: joi_1.default.string().required(),
-    currency: joi_1.default.string().valid('DOLLARS').required(),
+    currency: joi_1.default.string().valid("DOLLARS").required(),
 });
 const inventorySchema = joi_1.default.object({
     warehouse_id: joi_1.default.string().required(),
     quantity: joi_1.default.number().min(1).required(),
 });
 const skuSchema = joi_1.default.object({
-    id: joi_1.default.string().required(),
+    id: joi_1.default.string().optional(),
+    external_sku_id: joi_1.default.string().optional(),
     sales_attributes: joi_1.default.array().items(attributeSchema),
     price: priceSchema,
     inventory: joi_1.default.array().items(inventorySchema),
 });
 const packageWeightSchema = joi_1.default.object({
-    unit: joi_1.default.string().valid('CENTIMETER', 'KILOGRAM', 'INCH', 'POUND').required(),
+    unit: joi_1.default.string()
+        .valid("CENTIMETER", "KILOGRAM", "INCH", "POUND")
+        .required(),
     value: joi_1.default.string().required(),
 });
 const certificationSchema = joi_1.default.object();
 const videoSchema = joi_1.default.object({
-    ratio: joi_1.default.string().valid('1:1').optional(),
+    ratio: joi_1.default.string().valid("1:1").optional(),
     resolution: joi_1.default.string()
         .pattern(/HD 720P/)
         .optional(),
@@ -100,3 +103,5 @@ const skuInventorySchema = joi_1.default.array().items(joi_1.default.object({
 exports.skuInventorySchema = skuInventorySchema;
 const productIdsSchema = joi_1.default.array().items(joi_1.default.string().required());
 exports.productIdsSchema = productIdsSchema;
+const brandSchema = joi_1.default.object({ name: joi_1.default.string().required() }).required();
+exports.brandSchema = brandSchema;

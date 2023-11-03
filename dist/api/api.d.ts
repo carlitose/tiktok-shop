@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { ReadStream } from "fs";
-import type { Product, Recommendation, ProductPrices, SkuInventory, ProductPartialEdit, ProductIds } from "./type";
+import type { Product, Recommendation, ProductPrices, SkuInventory, ProductPartialEdit, ProductIds, Brand } from "./type";
 interface TikTokConfig {
     appKey: string;
     accessToken: string;
@@ -21,6 +21,8 @@ declare class TikTok {
         shopId: string;
     }): void;
     getShops(): Promise<any>;
+    getBrands(brandName: string, categoryId?: string): Promise<any>;
+    addCustomBrands(brand: Brand): Promise<any>;
     getProduct(id: string): Promise<any>;
     searchInventory(bodyData?: {}): Promise<any>;
     addProduct(productData: Product): Promise<any>;

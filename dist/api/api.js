@@ -17,7 +17,6 @@ const common_1 = __importDefault(require("../common/common"));
 const schemas_1 = require("./schemas");
 const BASE_URL = "https://open-api.tiktokglobalshop.com";
 const VERSION = "202309";
-const LOCALE = "en-US";
 class TikTok {
     constructor({ appKey, accessToken, shopCipher, shopId, appSecret, }) {
         this.appKey = appKey;
@@ -26,7 +25,7 @@ class TikTok {
         this.shopId = shopId;
         this.appSecret = appSecret;
     }
-    generateRequestSign(endpoint, bodyData, weNeedShopCipher = true) {
+    generateRequestSign(endpoint, bodyData, query = "", weNeedShopCipher = true) {
         const accessToken = this.accessToken;
         const appKey = this.appKey;
         const shopCipher = this.shopCipher;
@@ -36,7 +35,7 @@ class TikTok {
         if (weNeedShopCipher) {
             myUrl += `&shop_cipher=${shopCipher || ""}`;
         }
-        myUrl += `&shop_id=${shopId || ""}&version=${VERSION}`;
+        myUrl += `&shop_id=${shopId || ""}&version=${VERSION}${query}`;
         const { signature, timestamp } = common_1.default.signByUrl(myUrl, appSecret, bodyData);
         const url = `${myUrl}&timestamp=${timestamp}&sign=${signature}`;
         const headers = {
@@ -53,6 +52,37 @@ class TikTok {
             const { url, headers, data } = this.generateRequestSign(`/authorization/${VERSION}/shops`);
             try {
                 const response = yield axios_1.default.get(url, { headers, data });
+                return response.data;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
+    getBrands(brandName, categoryId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const query = categoryId
+                ? `&category_id=${categoryId}&brand_name=${brandName}&page_size=100&is_authorized=true`
+                : `&brand_name=${brandName}&page_size=100&is_authorized=true`;
+            const { url, headers, data } = this.generateRequestSign(`/product/${VERSION}/brands`, undefined, query);
+            try {
+                const response = yield axios_1.default.get(url, { headers, data });
+                return response.data;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
+    addCustomBrands(brand) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { error } = schemas_1.brandSchema.validate(brand);
+            if (error) {
+                throw new Error(`Invalid product data: ${error.details[0].message}`);
+            }
+            const { url, headers, data } = this.generateRequestSign(`/product/${VERSION}/brands`, brand, "", false);
+            try {
+                const response = yield axios_1.default.post(url, data, { headers });
                 return response.data;
             }
             catch (error) {
@@ -190,11 +220,9 @@ class TikTok {
     }
     getCategoryAttributes(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { url, headers, data } = this.generateRequestSign(`/product/${VERSION}/categories/${id}/attributes`, {
-                locale: LOCALE,
-            });
+            const { url, headers, data } = this.generateRequestSign(`/product/${VERSION}/categories/${id}/attributes`, undefined, '&locale=en-US');
             try {
-                const response = yield axios_1.default.get(url, { headers, data });
+                const response = yield axios_1.default.get(url, { headers });
                 return response.data;
             }
             catch (error) {
@@ -292,7 +320,7 @@ class TikTok {
     }
     addImage(image) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { url, headers } = this.generateRequestSign(`/product/${VERSION}/images/upload`, undefined, false);
+            const { url, headers } = this.generateRequestSign(`/product/${VERSION}/images/upload`, undefined, "", false);
             try {
                 const response = yield axios_1.default.post(url, { data: image }, { headers: Object.assign(Object.assign({}, headers), { "Content-type": "multipart/form-data" }) });
                 return response.data;
