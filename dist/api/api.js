@@ -59,6 +59,18 @@ class TikTok {
             }
         });
     }
+    getCategories() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { url, headers, data } = this.generateRequestSign(`/product/${VERSION}/categories`, undefined, '&locale=en-US');
+            try {
+                const response = yield axios_1.default.get(url, { headers, data });
+                return response.data;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
     getBrands(brandName, categoryId) {
         return __awaiter(this, void 0, void 0, function* () {
             const query = categoryId

@@ -21,6 +21,7 @@ declare class TikTok {
         shopId: string;
     }): void;
     getShops(): Promise<any>;
+    getCategories(): Promise<any>;
     getBrands(brandName: string, categoryId?: string): Promise<any>;
     addCustomBrands(brand: Brand): Promise<any>;
     getProduct(id: string): Promise<any>;

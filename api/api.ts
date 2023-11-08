@@ -100,6 +100,20 @@ class TikTok {
       throw error;
     }
   }
+  async getCategories(){
+    const { url, headers, data } = this.generateRequestSign(
+      `/product/${VERSION}/categories`,
+      undefined,
+      '&locale=en-US'
+    );
+
+    try {
+      const response = await axios.get(url, { headers, data });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
   async getBrands(brandName: string, categoryId?: string) {
     const query = categoryId
       ? `&category_id=${categoryId}&brand_name=${brandName}&page_size=100&is_authorized=true`

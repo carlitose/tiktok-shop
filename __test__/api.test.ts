@@ -143,6 +143,12 @@ describe("TikTok API", () => {
     const data = await tikTok.getShops();
     expect(data).toBe("test");
   });
+  it("getCategories", async () => {
+    const resp = { data: "test" };
+    mockedAxios.get.mockResolvedValue(resp);
+    const data = await tikTok.getShops();
+    expect(data).toBe("test");
+  });
   it("getBrands", async () => {
     const resp = { data: "test" };
     mockedAxios.get.mockResolvedValue(resp);
