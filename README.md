@@ -1,4 +1,4 @@
-[![Tiktok-shop Logo](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWnWWI1yW_T2VRAYVgkByltWqH41X-Qfslgr2qHM3j64VVksDjz9CxzwbQ8M1vYlaB7QIN5pg0BUcxGP05kIcfXSNusvmeCkxVIQYkYyC12bHwuW__r9krtMPXN8yPhaXrcapdhDD70RE5vzjLb26D3d60STB5GFypF3OsNTnYhIrAtowx7eC54qJsrKGk/s1600/Untitled-2.png)](https://github.com/tudinhacoustic/tiktok-shop)
+[![Tiktok-shop Logo](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWnWWI1yW_T2VRAYVgkByltWqH41X-Qfslgr2qHM3j64VVksDjz9CxzwbQ8M1vYlaB7QIN5pg0BUcxGP05kIcfXSNusvmeCkxVIQYkYyC12bHwuW__r9krtMPXN8yPhaXrcapdhDD70RE5vzjLb26D3d60STB5GFypF3OsNTnYhIrAtowx7eC54qJsrKGk/s1600/Untitled-2.png)](https://github.com/carlitose/tiktok-shop)
 
   Generate "signature" and "token" for [Tiktok Shop](https://partner.tiktokshop.com/doc).
 
@@ -10,7 +10,6 @@
 - [Content](#content)
 - [Installation](#installation)
 - [Features](#features)
-- [Community](#community)
 - [Generate Signature using Url](#generate-signature-using-url)
 - [Generate Signature using Config](#generate-signature-using-config)
 - [Generate Token using Auth Code](#generate-token-using-auth-code)
@@ -23,7 +22,7 @@ Installation is done using the
 [`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
 
 ```console
-$ npm install tiktok-shop
+$ npm install tiktok-shop-client
 ```
 [Back](#content)
 
@@ -32,13 +31,6 @@ $ npm install tiktok-shop
   * Generate Signature
   * Generate Token using Auth Code
   * Generate Token using Refresh Token
-
-[Back](#content)
-
-## Community
-
-  * [Discord](https://discord.com/channels/1164023414315548786/1164023415288631379) for support and discussion
-  * [Github](https://github.com/tudinhacoustic/tiktok-shop/issues) for have issues
 
 [Back](#content)
 
@@ -176,12 +168,8 @@ In this example, we are creating a new TikTok client and then we use the getProd
 [Back](#content)
 
 
-[npm-url]: https://npmjs.org/package/tiktok-shop
-[npm-version-image]: https://badgen.net/npm/v/tiktok-shop
+[npm-url]: https://npmjs.org/package/tiktok-shop-client
+[npm-version-image]: https://badgen.net/npm/v/tiktok-shop-client
 
-Follow me on: 
-[Linkedin](https://www.linkedin.com/in/tudinhacoustic) |
-[Youtube](https://www.youtube.com/c/TuDinh) |
-[Facebook](https://www.facebook.com/TuThichLapTrinh)
 
   
