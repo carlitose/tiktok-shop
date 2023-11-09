@@ -58,7 +58,7 @@ Response Data
 
 ## Generate Signature using Config
 ```js
-const tiktokShop = require('tiktok-shop')
+const tiktokShop = require('tiktok-shop-client')
 
 // Extract all query param EXCEPT ' sign ', ' access_token ', You do not need to reorder the params based on alphabetical order.
 const config = {
@@ -84,7 +84,7 @@ Response Data
 [Back](#content)
 ## Generate Token using Auth Code
 ```js
-const tiktokShop = require('tiktok-shop')
+const tiktokShop = require('tiktok-shop-client')
 
 // Extract all query param EXCEPT ' sign ', ' access_token ', You do not need to reorder the params based on alphabetical order.
 const config = {
@@ -113,7 +113,7 @@ Response Data
 [Back](#content)
 ## Generate Token using Refresh Token
 ```js
-const tiktokShop = require('tiktok-shop')
+const tiktokShop = require('tiktok-shop-client')
 
 // Extract all query param EXCEPT ' sign ', ' access_token ', You do not need to reorder the params based on alphabetical order.
 const config = {
@@ -145,7 +145,7 @@ Response Data
 The TikTok Shop Client API can be easily used to interact with the TikTok API. Here is an example of how it can be used:
 
 ```javascript
-const tiktokShop = require('tiktok-shop');
+const tiktokShop = require('tiktok-shop-client');
 
 // Create a new client
 const client = tiktokShop.TikTokClient(
