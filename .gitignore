@@ -2,5 +2,5 @@
 /.yarn
 .pnp.*
 test.ts
-prova.ts
+prova.*
 attributes.json
