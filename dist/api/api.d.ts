@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { ReadStream } from "fs";
-import type { Product, Recommendation, ProductPrices, SkuInventory, ProductPartialEdit, ProductIds, Brand } from "./type";
+import type { Product, Recommendation, ProductPrices, SkuInventory, ProductPartialEdit, ProductIds, Brand, OrderStatus } from "./type";
 interface TikTokConfig {
     appKey: string;
     accessToken: string;
@@ -40,5 +40,6 @@ declare class TikTok {
     deleteProducts(productIds: ProductIds): Promise<any>;
     recoverProducts(productIds: ProductIds): Promise<any>;
     addImage(image: ReadStream): Promise<any>;
+    getOrders(orderStatus: OrderStatus, pageToken?: string): Promise<any>;
 }
 export default TikTok;

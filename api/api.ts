@@ -21,6 +21,7 @@ import type {
   ProductPartialEdit,
   ProductIds,
   Brand,
+  OrderStatus
 } from "./type";
 
 interface TikTokConfig {
@@ -437,6 +438,26 @@ class TikTok {
       throw error;
     }
   }
+
+  async getOrders(orderStatus:OrderStatus, pageToken?: string){
+    let params = "&page_size=100"
+    if(pageToken){
+      params += `&page_token=${pageToken}`
+    }
+    const { url, headers, data } = this.generateRequestSign(
+      `/order/${VERSION}/orders/search`,
+      orderStatus,
+      params,
+    );
+
+    try {
+      const response = await axios.post(url, data, { headers });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
+
 
 export default TikTok;

@@ -342,5 +342,21 @@ class TikTok {
             }
         });
     }
+    getOrders(orderStatus, pageToken) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let params = "&page_size=100";
+            if (pageToken) {
+                params += `&page_token=${pageToken}`;
+            }
+            const { url, headers, data } = this.generateRequestSign(`/order/${VERSION}/orders/search`, orderStatus, params);
+            try {
+                const response = yield axios_1.default.post(url, data, { headers });
+                return response.data;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
 }
 exports.default = TikTok;

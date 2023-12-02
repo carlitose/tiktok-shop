@@ -99,3 +99,7 @@ export type ProductIds = string[];
 export interface Brand {
 	name:string
 } 
+
+export interface OrderStatus{
+	order_status:string
+}
