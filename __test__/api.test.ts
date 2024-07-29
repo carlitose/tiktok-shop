@@ -50,14 +50,14 @@ describe("TikTok API", () => {
         },
       ],
       title: "Test Product",
-      package_weight: { unit: "KILOGRAM", value: '1' },
+      package_weight: { unit: "KILOGRAM", value: "1" },
     };
     invalidProductData = {
       description: "",
       category_id: "test",
       main_images: [{ uri: "http://example.com", width: 1000, height: 1000 }],
       title: "Test Product",
-      package_weight: { unit: "KILOGRAM", value: '1' },
+      package_weight: { unit: "KILOGRAM", value: "1" },
     };
     validProductIds = ["test1", "test2", "test3"];
     validSkuPriceData = {
@@ -85,15 +85,17 @@ describe("TikTok API", () => {
         },
       ],
     };
-    validSkuData =[ {
-      id: "test_sku_id",
-      inventory: [
-        {
-          quantity: 10
-        }
-      ]
-    }];
-    
+    validSkuData = [
+      {
+        id: "test_sku_id",
+        inventory: [
+          {
+            quantity: 10,
+          },
+        ],
+      },
+    ];
+
     validCategoryData = {
       product_title: "Test Product",
       description: "Test Description",
@@ -158,7 +160,7 @@ describe("TikTok API", () => {
   it("addCustomBrands", async () => {
     const resp = { data: "test" };
     mockedAxios.post.mockResolvedValue(resp);
-    const data = await tikTok.addCustomBrands({name:'MyBrand'});
+    const data = await tikTok.addCustomBrands({ name: "MyBrand" });
     expect(data).toBe("test");
   });
 
@@ -245,7 +247,15 @@ describe("TikTok API", () => {
   it("addImage", async () => {
     const resp = { data: "test" };
     mockedAxios.post.mockResolvedValue(resp);
-    const data = await tikTok.addImage('123459683472398dgfkasjhfgdaskjhf' as any);
+    const data = await tikTok.addImage(
+      "123459683472398dgfkasjhfgdaskjhf" as any
+    );
+    expect(data).toBe("test");
+  });
+  it("getOrderStatement", async () => {
+    const resp = { data: "test" };
+    mockedAxios.get.mockResolvedValue(resp);
+    const data = await tikTok.getOrderStatementTransaction("1234");
     expect(data).toBe("test");
   });
 });
