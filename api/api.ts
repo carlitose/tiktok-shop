@@ -21,7 +21,7 @@ import type {
   ProductPartialEdit,
   ProductIds,
   Brand,
-  OrderStatus
+  OrderStatus,
 } from "./type";
 
 interface TikTokConfig {
@@ -101,11 +101,11 @@ class TikTok {
       throw error;
     }
   }
-  async getCategories(){
+  async getCategories() {
     const { url, headers, data } = this.generateRequestSign(
       `/product/${VERSION}/categories`,
       undefined,
-      '&locale=en-US'
+      "&locale=en-US"
     );
 
     try {
@@ -122,7 +122,7 @@ class TikTok {
     const { url, headers, data } = this.generateRequestSign(
       `/product/${VERSION}/brands`,
       undefined,
-     query
+      query
     );
 
     try {
@@ -306,7 +306,7 @@ class TikTok {
     const { url, headers, data } = this.generateRequestSign(
       `/product/${VERSION}/categories/${id}/attributes`,
       undefined,
-      '&locale=en-US'
+      "&locale=en-US"
     );
 
     try {
@@ -439,15 +439,28 @@ class TikTok {
     }
   }
 
-  async getOrders(orderStatus:OrderStatus, pageToken?: string){
-    let params = "&page_size=100"
-    if(pageToken){
-      params += `&page_token=${pageToken}`
+  async getOrderStatementTransaction(orderId: string) {
+    const { url, headers, data } = this.generateRequestSign(
+      `/finance/${VERSION}/categories/${orderId}/statement_transactions`
+    );
+
+    try {
+      const response = await axios.get(url, { headers, data });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getOrders(orderStatus: OrderStatus, pageToken?: string) {
+    let params = "&page_size=100";
+    if (pageToken) {
+      params += `&page_token=${pageToken}`;
     }
     const { url, headers, data } = this.generateRequestSign(
       `/order/${VERSION}/orders/search`,
       orderStatus,
-      params,
+      params
     );
 
     try {
@@ -458,6 +471,5 @@ class TikTok {
     }
   }
 }
-
 
 export default TikTok;

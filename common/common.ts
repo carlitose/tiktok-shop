@@ -116,7 +116,7 @@ export default class Common {
     for (let index = 0; index < key.length; index += 1) {
       input += key[index] + modParams[key[index]];
     }
-    const bodyText = body ? JSON.stringify(body) : '';
+    const bodyText = body ? JSON.stringify(body) : "";
     const plainText = `${appSecret}${path}${input}${bodyText}${appSecret}`;
     const signature = this.sha256Decoded(plainText, appSecret);
     return {
@@ -124,7 +124,7 @@ export default class Common {
       timestamp,
     };
   }
-  static signByUrl(url: string = "", appSecret: string = "", body?:object) {
+  static signByUrl(url: string = "", appSecret: string = "", body?: object) {
     const { path, query } = this.getPathQueryFromUrl(decodeURIComponent(url));
     const params = this.parseQueryString(query);
     return this.signatureByAppSecret(params, path, appSecret, body);
@@ -141,13 +141,14 @@ export default class Common {
     };
   }
   static parseQueryString(queryString: string) {
-    const obj: { [key: string]: string } = {};
-    queryString.split("&").forEach((keyValue) => {
-      const [key, value] = keyValue.split("=");
+    const params = new URLSearchParams(queryString);
+    const obj = {} as any;
+
+    for (const [key, value] of params.entries()) {
       obj[key] = value;
-    });
+    }
+
     return obj;
-    
   }
   static checkUrl(url: string, appSecret: string) {
     let error = "";
